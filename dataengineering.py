@@ -1,5 +1,7 @@
 import selenium
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -10,7 +12,10 @@ import datetime
 
 
 #lets us start a new google chrome session and driver becomes our main point of interaction with browseer where we can write commands
-driverStart = webdriver.Chrome() 
+chrome_options = Options()
+chrome_options.add_argument("--start-maximized")  # This will start Chrome maximized
+
+driverStart = webdriver.Chrome(options=chrome_options) 
 #does not return anything, simply opens site. DRIVERSTART IS HOW WE ACCESS THE PAGE AND INTERACT WITH IT
 driverStart.get("https://www.ebay.com/") 
 #waits 20 milliseconds for loading
@@ -24,8 +29,14 @@ element = driverStart.find_element(By.NAME, "_nkw")
 
 element.send_keys("bad batch attack shuttle")
 element.submit()
+
+#inputs searchbar and searches
 element2 = driverStart.find_element(By.ID, "gh-as-a")
+
 element2.click()
+#clicks advanced settings
+
+
 element3 = driverStart.find_element(By.ID, "s0-1-17-5[1]-[2]-LH_Sold").click()
 element = driverStart.find_element(By.CLASS_NAME, "btn--primary").click()
 
