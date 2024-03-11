@@ -6,6 +6,8 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
 import pandas as pd
+import datetime
+
 
 #lets us start a new google chrome session and driver becomes our main point of interaction with browseer where we can write commands
 driverStart = webdriver.Chrome() 
@@ -39,7 +41,7 @@ condition_data_list = []
 z = 0
 d = 0
 while(True):
-    item_square_individual = driverStart.find_element(By.CLASS_NAME,'srp-results')
+    item_square_individual = driverStart.find_element(By.CSS_SELECTOR,'.srp-results.clearfix')
     item_id = item_square_individual.find_elements(By.CSS_SELECTOR,'li[id]')
     item_price = driverStart.find_elements(By.CLASS_NAME, 's-item__price')
     start = 0
@@ -69,7 +71,8 @@ while(True):
     date_id_list = driverStart.find_elements(By.CLASS_NAME, 's-item__title--tag')
     for i in date_id_list:
         date_id_date_only = i.find_element(By.CLASS_NAME, "POSITIVE")
-        date_data_list.append(date_id_date_only.text)
+        remove_sold = date_id_date_only.text.strip("Sold")
+        date_data_list.append(remove_sold)
 
     #condition
     list_items_test = driverStart.find_element(By.ID, 'srp-river-results')
