@@ -7,7 +7,6 @@ from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
 import pandas as pd
 from datetime import datetime
-from secrets_1 import access_key, secret_access_key
 import boto3
 import os
 
@@ -135,3 +134,21 @@ def run():
     input("Press Enter to close...")  # This will pause the script until you press Enter
 if __name__ == '__main__':
     run()
+def lambda_handler(event, context):
+    # Your script logic goes here
+    print("Lambda function triggered.")
+    
+    # For demonstration purposes, let's print the current date and time
+    print("Current date and time:", datetime.now())
+    run()
+    # You can include your existing script logic here
+    
+    # For example, if you have the code to upload CSV files to S3, you can call that code here
+    
+    # Remember to replace this placeholder logic with your actual script logic
+    
+    # Return a response (optional)
+    return {
+        "statusCode": 200,
+        "body": "Lambda function executed successfully."
+    }
