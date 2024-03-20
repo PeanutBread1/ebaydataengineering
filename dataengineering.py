@@ -134,7 +134,8 @@ def run():
     input("Press Enter to close...")  # This will pause the script until you press Enter
 if __name__ == '__main__':
     run()
-def lambda_handler(event, context):
+    """
+#def lambda_handler(event, context):
     # Your script logic goes here
     print("Lambda function triggered.")
     
@@ -152,3 +153,4 @@ def lambda_handler(event, context):
         "statusCode": 200,
         "body": "Lambda function executed successfully."
     }
+"""
